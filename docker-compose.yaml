@@ -1,0 +1,36 @@
+version: '3.6'
+
+services:
+  #   backend:
+  #     image: onlab-backend
+  #     restart: always
+  #     ports:
+  #       - "5000:5000"
+  #     networks:
+  #       - onlab
+  # frontend:
+  #   image: onlab-frontend
+  #   restart: always
+  #   networks:
+  #     - onlab
+  database:
+    image: mysql:oracle
+    restart: always
+    command: "--default-authentication-plugin=mysql_native_password"
+    environment:
+      MYSQL_USER: onlab
+      MYSQL_PASSWORD: onlab
+      MYSQL_DATABASE: onlab
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+    # volumes:
+    #   - "./db:/var/lib/mysql"
+    ports:
+      - "8080:8080"
+      - "3306:3306"
+    networks:
+      - onlab
+
+networks:
+  onlab:
+    driver: bridge
+    external: true
